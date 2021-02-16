@@ -1,0 +1,64 @@
+﻿<Window x:Class="DebaUOchery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DebaUOchery"
+        mc:Ignorable="d"
+        Height="460.773" Width="659.409"
+        Title="DebaUOchery">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Margin="10,4,0,41" VerticalAlignment="Stretch" Width="631">
+            <TabItem Header="Lore">
+                <Grid>
+
+                    <Button Name="btnCapture" Content="Capture" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="96" Click="btnCapture_Click"/>
+                    <Button Name="btnCaptureStop" Content="StopCap" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Width="96" Click="btnCaptureStop_Click" IsEnabled="False"/>
+
+                    <DataGrid AutoGenerateColumns="False" Name="dgLore" ItemsSource="{Binding LoreBinding}" HorizontalAlignment="Left"  Margin="8,35,0,0" VerticalAlignment="Stretch" Width="607" ColumnWidth="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Prop" IsReadOnly="True" Binding="{Binding Path=Prop}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Val" IsReadOnly="True"  Binding="{Binding Path=Val}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Location">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox Name="txtVal" HorizontalAlignment="Left" Height="24" Margin="10,53,0,0" TextWrapping="Wrap" Text="value" VerticalAlignment="Top" Width="320"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Skills">
+                <Grid Background="#FFE5E5E5">
+
+                    <DataGrid AutoGenerateColumns="False" Name="dgSkills" ItemsSource="{Binding TestBinding}" HorizontalAlignment="Left" Height="337" Margin="10,10,0,0" VerticalAlignment="Top" Width="605" ColumnWidth="Auto" Grid.ColumnSpan="3">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="SkillNum" IsReadOnly="True" Binding="{Binding Path=SkillNum}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="SkillName" IsReadOnly="True"  Binding="{Binding Path=SkillName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="SkillVal" IsReadOnly="True"  Binding="{Binding Path=SkillVal}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="SkillCap" IsReadOnly="True"  Binding="{Binding Path=SkillCap}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="GainState" IsReadOnly="True"  Binding="{Binding Path=GainState}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="GainTime" IsReadOnly="True"  Binding="{Binding Path=GainTime, StringFormat=t}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="SinceLast" IsReadOnly="True"  Binding="{Binding Path=TimeSinceGain}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Items">
+                <Grid>
+                    <Label Content="ID"  Height="28" Margin="104,34,488,295"/>
+                    <Label Content="LastTarget"  Height="28"  Width="100" Margin="8,57,517,272"/>
+                    <TextBox Name="txtLastTargetID" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="84,62,421,272"/>
+                    <Label Content="Type"  Height="28" Margin="229,34,363,295"/>
+                    <TextBox x:Name="txtLastTargetType" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="209,62,296,272"/>
+                    <Label Content="LastObject"  Height="28"  Width="100" Margin="8,85,517,244"/>
+                    <TextBox x:Name="txtLastObjectID" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="84,90,421,244"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Name="btnConnect" Content="Connect to UO" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="96" Click="btnConnect_Click"/>
+
+
+    </Grid>
+</Window>
