@@ -24,6 +24,7 @@ using Point = System.Drawing.Point;
 using System.Drawing.Imaging;
 using Color = System.Drawing.Color;
 using System.Reflection;
+using System.IO;
 
 namespace DebaUOchery
 {
@@ -435,12 +436,21 @@ namespace DebaUOchery
                         {
                             case 1:
                                 animal.objId = txtLastTargetID.Text;
+                                pixCmp = Color.FromArgb(0, 0, 0, 132);
+                                this.Title = parseLine(40, 44);
+
+
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-
                                 animal.HP = parseLine(160, 104);
+                                try { animal.HP = animal.HP.Split('/')[1]; }
+                                catch { }
                                 animal.Stam = parseLine(160, 122);
+                                try { animal.Stam = animal.Stam.Split('/')[1]; }
+                                catch { }
                                 animal.Mana = parseLine(160, 140);
+                                try { animal.Mana = animal.Mana.Split('/')[1]; }
+                                catch { }
                                 animal.Str = parseLine(160, 158);
                                 animal.Dex = parseLine(160, 176);
                                 animal.Int = parseLine(160, 194);
@@ -551,7 +561,7 @@ namespace DebaUOchery
                                 break;
                         }
 
-                        //bitmap.Save("c:\\temp\\test.bmp", ImageFormat.Bmp);
+                        bitmap.Save("c:\\temp\\test.bmp", ImageFormat.Bmp);
                     }
 
 
@@ -911,6 +921,8 @@ namespace DebaUOchery
             dgLore.Items.Add(new PropVal("Chiv", "?"));
             dgLore.Items.Add(new PropVal("Slots", "?"));
 
+
+            cmbAnimalType.Items.Add("Nightmare");
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
@@ -954,7 +966,8 @@ namespace DebaUOchery
                 pixOn(x, y + 1) &&
                 !pixOn(x, y - 1) &&
                 !pixOn(x, y - 2) &&
-                !pixOn(x, y - 5) 
+                !pixOn(x, y - 5) &&
+                !pixOn(x + 1, y - 1)
                 )
             {
                 x += 2;
@@ -972,7 +985,8 @@ namespace DebaUOchery
 
             //IsPercent?
             if (
-                !pixOn(x + 1, y + 1)
+                !pixOn(x + 1, y + 1) &&
+                !pixOn(x - 1, y + 1)
                 )
             {
                 x += 8;
@@ -982,9 +996,11 @@ namespace DebaUOchery
             //IsZero?
             if (
                 !pixOn(x, y + 1) &&
+                !pixOn(x + 2, y - 1) &&
                 !pixOn(x + 3, y - 5) &&
                 pixOn(x, y - 2) &&
-                pixOn(x, y - 3)
+                pixOn(x, y - 3) &&
+                !pixOn(x + 3, y)
                 )
             {
                 x += 7;
@@ -1006,6 +1022,7 @@ namespace DebaUOchery
             if (
                 pixOn(x + 1, y) &&
                 pixOn(x, y + 1) &&
+                pixOn(x + 2, y) &&
                 pixOn(x + 2, y + 1)
                 )
             {
@@ -1086,14 +1103,192 @@ namespace DebaUOchery
 
             //IsNine?
             if (
-                pixOn(x - 1, y +1)
+                pixOn(x - 1, y + 1) &&
+                pixOn(x + 1, y + 1)
                 )
             {
                 x += 2;
                 return '9';
             }
 
-            return 'x';
+            //Is_a?
+            if (
+                !pixOn(x, y + 1) &&
+                pixOn(x + 1, y - 1) &&
+                !pixOn(x + 2, y + 1) &&
+                !pixOn(x + 3, y + 2)
+                )
+            {
+                x += 5;
+                return 'a';
+            }
+
+            //Is_b?
+            if (
+                pixOn(x, y - 7) &&
+                pixOn(x + 2, y + 1) &&
+                pixOn(x + 2, y - 4) &&
+                !pixOn(x + 2, y - 7) &&
+                !pixOn(x - 1, y - 6)
+
+                )
+            {
+                x += 5;
+                return 'b';
+            }
+
+            //Is_e?
+            if (
+                !pixOn(x, y + 1) &&
+                pixOn(x, y - 1) &&
+                pixOn(x, y - 2) &&
+                !pixOn(x + 2, y)
+                )
+            {
+                x += 5;
+                return 'e';
+            }
+
+            //Is_g?
+            if (
+                !pixOn(x, y + 1) &&
+                pixOn(x + 1, y - 1) &&
+                !pixOn(x + 2, y + 1) &&
+                !pixOn(x, y - 4) &&
+                pixOn(x + 3, y + 2)
+                )
+            {
+                x += 5;
+                return 'g';
+            }
+
+            //Is_i?
+            if (
+                !pixOn(x, y - 5) &&
+                pixOn(x, y - 7)
+                )
+            {
+                x += 2;
+                return 'i';
+            }
+
+            //Is_l?
+            if (
+                pixOn(x, y - 7) &&
+                !pixOn(x + 2, y - 7) &&
+                !pixOn(x - 1, y - 6) &&
+                !pixOn(x, y - 8)
+
+                )
+            {
+                x += 2;
+                return 'l';
+            }
+
+            //Is_m?
+            if (
+                !pixOn(x + 2, y) &&
+                pixOn(x + 2, y - 4) &&
+                pixOn(x + 3, y - 4) &&
+                !pixOn(x + 4, y - 4) &&
+                pixOn(x + 5, y - 4)
+                )
+            {
+                x += 8;
+                return 'm';
+            }
+
+            //Is_n?
+            if (
+                !pixOn(x + 2, y) &&
+                pixOn(x, y - 1) &&
+                pixOn(x + 2, y - 4)
+                )
+            {
+                x += 5;
+                return 'n';
+            }
+
+            //Is_o?
+            if (
+                !pixOn(x, y + 1) &&
+                !pixOn(x - 1, y) &&
+                pixOn(x + 1, y + 1) &&
+                pixOn(x + 2, y + 1)
+                )
+            {
+                x += 5;
+                return 'o';
+            }
+
+            //Is_R
+            if (
+                pixOn(x, y + 1) &&
+                pixOn(x, y - 8) &&
+                pixOn(x + 6, y + 1)
+                )
+            {
+                x += 7;
+                return 'R';
+            }
+
+            //Is_r
+            if (
+                pixOn(x + 2, y - 3) &&
+                !pixOn(x + 2, y - 4)
+                )
+            {
+                x += 5;
+                return 'r';
+            }
+
+            //Is_s?
+            if (
+                pixOn(x - 1, y + 1) &&
+                pixOn(x - 2, y + 1) &&
+                pixOn(x - 3, y + 1)
+                )
+            {
+                x += 2;
+                return 's';
+            }
+
+            //Is_w?
+            if (
+                !pixOn(x, y + 1) &&
+                !pixOn(x - 1, y) &&
+                !pixOn(x, y + 3) &&
+                pixOn(x + 1, y + 1)
+                )
+            {
+                x += 6;
+                return 'w';
+            }
+
+            //Is_y?
+            if (
+                !pixOn(x, y + 1) &&
+                pixOn(x + 1, y - 1) &&
+                !pixOn(x + 2, y + 1) &&
+                pixOn(x + 3, y + 2)
+                )
+            {
+                x += 5;
+                return 'y';
+            }
+
+            //Is_z?
+            if (
+                !pixOn(x, y - 1) &&
+                pixOn(x + 1, y - 1)
+                
+                )
+            {
+                x += 5;
+                return 'z';
+            }
+
+            return '_';
         }
 
         private string parseLine(int x, int y)
@@ -1111,6 +1306,7 @@ namespace DebaUOchery
                     Console.WriteLine($@"{i},{y} - {bitmap.GetPixel(i, y)}");
                     if (
                         !pixOn(i, y + 1) &&
+                        !pixOn(i, y - 1) &&
                         pixOn(i, y - 3) &&
                         !pixOn(i, y - 5)
                         )
@@ -1138,6 +1334,19 @@ namespace DebaUOchery
         {
             btnCapture.IsEnabled = true;
             btnCaptureStop.IsEnabled = false;
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            string path = $@"C:\dUO";
+            string filename = $@"{cmbAnimalType.Text}.csv";
+            Directory.CreateDirectory(path);
+
+            if (!File.Exists($@"{path}\{filename}"))
+            {
+                File.AppendAllText($@"{path}\{filename}", "objId,HP,Stam,Mana,Str,Dex,Int,BardDiff,HPR,SR,MR,PhysRes,FireRes,ColdRes,PoisRes,EnerRes,PhysDam,FireDam,ColdDam,PoisDam,EnerDam,BaseDam,Wres,Tact,Resist,Anat,Heal,Pois,Detect,Hide,Parry,Mage,Eval,Med,Necro,Spirit,Myst,Focus,SW,Disco,Bush,Ninj,Chiv,Slots" + Environment.NewLine);
+            }
+            File.AppendAllText($@"{path}\{filename}", $@"{animal.objId},{animal.HP},{animal.Stam},{animal.Mana},{animal.Str},{animal.Dex},{animal.Int},{animal.BardDiff},{animal.HPR},{animal.SR},{animal.MR},{animal.PhysRes},{animal.FireRes},{animal.ColdRes},{animal.PoisRes},{animal.EnerRes},{animal.PhysDam},{animal.FireDam},{animal.ColdDam},{animal.PoisDam},{animal.EnerDam},{animal.BaseDam},{animal.Wres},{animal.Tact},{animal.Resist},{animal.Anat},{animal.Heal},{animal.Pois},{animal.Detect},{animal.Hide},{animal.Parry},{animal.Mage},{animal.Eval},{animal.Med},{animal.Necro},{animal.Spirit},{animal.Myst},{animal.Focus},{animal.SW},{animal.Disco},{animal.Bush},{animal.Ninj},{animal.Chiv},{animal.Slots}" + Environment.NewLine);
         }
     }
 }
