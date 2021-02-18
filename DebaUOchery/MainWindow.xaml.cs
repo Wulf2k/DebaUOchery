@@ -402,6 +402,13 @@ namespace DebaUOchery
             charTime.Enabled = true;
         }
 
+        private string SlashSplit(string val, int index)
+        {
+            try { return val.Split('/')[index]; }
+            catch { }
+            return val;
+        }
+
         private void charTimeElapsed(object sender, ElapsedEventArgs e)
         {
             try
@@ -443,14 +450,11 @@ namespace DebaUOchery
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
                                 animal.HP = parseLine(160, 104);
-                                try { animal.HP = animal.HP.Split('/')[1]; }
-                                catch { }
+                                animal.HP = SlashSplit(animal.HP, 1);
                                 animal.Stam = parseLine(160, 122);
-                                try { animal.Stam = animal.Stam.Split('/')[1]; }
-                                catch { }
+                                animal.Stam = SlashSplit(animal.Stam, 1);
                                 animal.Mana = parseLine(160, 140);
-                                try { animal.Mana = animal.Mana.Split('/')[1]; }
-                                catch { }
+                                animal.Mana = SlashSplit(animal.Mana, 1);
                                 animal.Str = parseLine(160, 158);
                                 animal.Dex = parseLine(160, 176);
                                 animal.Int = parseLine(160, 194);
@@ -471,80 +475,101 @@ namespace DebaUOchery
                             case 3:
                                 x = 190;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-                                animal.PhysRes = parseLine(190, 104);
+                                animal.PhysRes = parseLine(190, 104).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 255, 0, 0);
-                                animal.FireRes = parseLine(190, 122);
+                                animal.FireRes = parseLine(190, 122).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 0, 0, 132);
-                                animal.ColdRes = parseLine(190, 140);
+                                animal.ColdRes = parseLine(190, 140).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 0, 132, 0);
-                                animal.PoisRes = parseLine(190, 158);
+                                animal.PoisRes = parseLine(190, 158).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 189, 132, 255);
-                                animal.EnerRes = parseLine(190, 176);
+                                animal.EnerRes = parseLine(190, 176).Trim('%');
 
                                 parsedPage++;
                                 break;
                             case 4:
                                 x = 190;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-                                animal.PhysDam = parseLine(190, 104);
+                                animal.PhysDam = parseLine(190, 104).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 255, 0, 0);
-                                animal.FireDam = parseLine(190, 122);
+                                animal.FireDam = parseLine(190, 122).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 0, 0, 132);
-                                animal.ColdDam = parseLine(190, 140);
+                                animal.ColdDam = parseLine(190, 140).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 0, 132, 0);
-                                animal.PoisDam = parseLine(190, 158);
+                                animal.PoisDam = parseLine(190, 158).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 189, 132, 255);
-                                animal.EnerDam = parseLine(190, 176);
+                                animal.EnerDam = parseLine(190, 176).Trim('%');
 
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-                                animal.BaseDam = parseLine(190, 194);
+                                animal.BaseDam = parseLine(190, 194).Trim('%');
 
                                 parsedPage++;
                                 break;
                             case 5:
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-                                animal.Wres = parseLine(160, 104);
-                                animal.Tact = parseLine(160, 122);
-                                animal.Resist = parseLine(160, 140);
-                                animal.Anat = parseLine(160, 158);
-                                animal.Heal = parseLine(160, 176);
-                                animal.Pois = parseLine(160, 194);
-                                animal.Detect = parseLine(160, 212);
-                                animal.Hide = parseLine(160, 230);
-                                animal.Parry = parseLine(160, 248);
+                                animal.WresCap = parseLine(160, 104);
+                                animal.WresCap = SlashSplit(animal.WresCap, 1);
+                                animal.TactCap = parseLine(160, 122);
+                                animal.TactCap = SlashSplit(animal.TactCap, 1);
+                                animal.ResistCap = parseLine(160, 140);
+                                animal.ResistCap = SlashSplit(animal.ResistCap, 1);
+                                animal.AnatCap = parseLine(160, 158);
+                                animal.AnatCap = SlashSplit(animal.AnatCap, 1);
+                                animal.HealCap = parseLine(160, 176);
+                                animal.HealCap = SlashSplit(animal.HealCap, 1);
+                                animal.PoisCap = parseLine(160, 194);
+                                animal.PoisCap = SlashSplit(animal.PoisCap, 1);
+                                animal.DetectCap = parseLine(160, 212);
+                                animal.DetectCap = SlashSplit(animal.DetectCap, 1);
+                                animal.HideCap = parseLine(160, 230);
+                                animal.HideCap = SlashSplit(animal.HideCap, 1);
+                                animal.ParryCap = parseLine(160, 248);
+                                animal.ParryCap = SlashSplit(animal.ParryCap, 1);
 
                                 parsedPage++;
                                 break;
                             case 6:
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-                                animal.Mage = parseLine(160, 104);
-                                animal.Eval = parseLine(160, 122);
-                                animal.Med = parseLine(160, 140);
-                                animal.Necro = parseLine(160, 158);
-                                animal.Spirit = parseLine(160, 176);
-                                animal.Myst = parseLine(160, 194);
-                                animal.Focus = parseLine(160, 212);
-                                animal.SW = parseLine(160, 230);
-                                animal.Disco = parseLine(160, 248);
+                                animal.MageCap = parseLine(160, 104);
+                                animal.MageCap = SlashSplit(animal.MageCap, 1);
+                                animal.EvalCap = parseLine(160, 122);
+                                animal.EvalCap = SlashSplit(animal.EvalCap, 1);
+                                animal.MedCap = parseLine(160, 140);
+                                animal.MedCap = SlashSplit(animal.MedCap, 1);
+                                animal.NecroCap = parseLine(160, 158);
+                                animal.NecroCap = SlashSplit(animal.NecroCap, 1);
+                                animal.SpiritCap = parseLine(160, 176);
+                                animal.SpiritCap = SlashSplit(animal.SpiritCap, 1);
+                                animal.MystCap = parseLine(160, 194);
+                                animal.MystCap = SlashSplit(animal.MystCap, 1);
+                                animal.FocusCap = parseLine(160, 212);
+                                animal.FocusCap = SlashSplit(animal.FocusCap, 1);
+                                animal.SWCap = parseLine(160, 230);
+                                animal.SWCap = SlashSplit(animal.SWCap, 1);
+                                animal.DiscoCap = parseLine(160, 248);
+                                animal.DiscoCap = SlashSplit(animal.DiscoCap, 1);
 
                                 parsedPage++;
                                 break;
                             case 7:
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
-                                animal.Bush = parseLine(160, 104);
-                                animal.Ninj = parseLine(160, 122);
-                                animal.Chiv = parseLine(160, 140);
+                                animal.BushCap = parseLine(160, 104);
+                                animal.BushCap = SlashSplit(animal.BushCap, 1);
+                                animal.NinjCap = parseLine(160, 122);
+                                animal.NinjCap = SlashSplit(animal.NinjCap, 1);
+                                animal.ChivCap = parseLine(160, 140);
+                                animal.ChivCap = SlashSplit(animal.ChivCap, 1);
 
                                 x = 30;
                                 pixCmp = Color.FromArgb(0, 82, 66, 41);
@@ -698,29 +723,29 @@ namespace DebaUOchery
             public string EnerDam { get; set; }
             public string BaseDam { get; set; }
 
-            public string Wres { get; set; }
-            public string Tact { get; set; }
-            public string Resist { get; set; }
-            public string Anat { get; set; }
-            public string Heal { get; set; }
-            public string Pois { get; set; }
-            public string Detect { get; set; }
-            public string Hide { get; set; }
-            public string Parry { get; set; }
+            public string WresCap { get; set; }
+            public string TactCap { get; set; }
+            public string ResistCap { get; set; }
+            public string AnatCap { get; set; }
+            public string HealCap { get; set; }
+            public string PoisCap { get; set; }
+            public string DetectCap { get; set; }
+            public string HideCap { get; set; }
+            public string ParryCap { get; set; }
 
-            public string Mage { get; set; }
-            public string Eval{ get; set; }
-            public string Med{ get; set; }
-            public string Necro{ get; set; }
-            public string Spirit{ get; set; }
-            public string Myst{ get; set; }
-            public string Focus{ get; set; }
-            public string SW{ get; set; }
-            public string Disco{ get; set; }
+            public string MageCap { get; set; }
+            public string EvalCap { get; set; }
+            public string MedCap { get; set; }
+            public string NecroCap { get; set; }
+            public string SpiritCap { get; set; }
+            public string MystCap { get; set; }
+            public string FocusCap { get; set; }
+            public string SWCap { get; set; }
+            public string DiscoCap { get; set; }
 
-            public string Bush { get; set; }
-            public string Ninj { get; set; }
-            public string Chiv { get; set; }
+            public string BushCap { get; set; }
+            public string NinjCap { get; set; }
+            public string ChivCap { get; set; }
             public string Slots { get; set; }
 
 
@@ -752,29 +777,29 @@ namespace DebaUOchery
                 EnerDam = "?";
                 BaseDam = "?";
 
-                Wres = "?";
-                Tact = "?";
-                Resist = "?";
-                Anat = "?";
-                Heal = "?";
-                Pois = "?";
-                Detect = "?";
-                Hide = "?";
-                Parry = "?";
+                WresCap = "?";
+                TactCap = "?";
+                ResistCap = "?";
+                AnatCap = "?";
+                HealCap = "?";
+                PoisCap = "?";
+                DetectCap = "?";
+                HideCap = "?";
+                ParryCap = "?";
 
-                Mage = "?";
-                Eval = "?";
-                Med = "?";
-                Necro = "?";
-                Spirit = "?";
-                Myst = "?";
-                Focus = "?";
-                SW = "?";
-                Disco = "?";
+                MageCap = "?";
+                EvalCap = "?";
+                MedCap = "?";
+                NecroCap = "?";
+                SpiritCap = "?";
+                MystCap = "?";
+                FocusCap = "?";
+                SWCap = "?";
+                DiscoCap = "?";
 
-                Bush = "?";
-                Ninj = "?";
-                Chiv = "?";
+                BushCap = "?";
+                NinjCap = "?";
+                ChivCap = "?";
                 Slots = "?";
 
 
@@ -896,33 +921,101 @@ namespace DebaUOchery
             dgLore.Items.Add(new PropVal("EnerDam", "?"));
             dgLore.Items.Add(new PropVal("BaseDam", "?"));
 
-            dgLore.Items.Add(new PropVal("Wres", "?"));
-            dgLore.Items.Add(new PropVal("Tact", "?"));
-            dgLore.Items.Add(new PropVal("Resist", "?"));
-            dgLore.Items.Add(new PropVal("Anat", "?"));
-            dgLore.Items.Add(new PropVal("Heal", "?"));
-            dgLore.Items.Add(new PropVal("Pois", "?"));
-            dgLore.Items.Add(new PropVal("Detect", "?"));
-            dgLore.Items.Add(new PropVal("Hide", "?"));
-            dgLore.Items.Add(new PropVal("Parry", "?"));
+            dgLore.Items.Add(new PropVal("WresCap", "?"));
+            dgLore.Items.Add(new PropVal("TactCap", "?"));
+            dgLore.Items.Add(new PropVal("ResistCap", "?"));
+            dgLore.Items.Add(new PropVal("AnatCap", "?"));
+            dgLore.Items.Add(new PropVal("HealCap", "?"));
+            dgLore.Items.Add(new PropVal("PoisCap", "?"));
+            dgLore.Items.Add(new PropVal("DetectCap", "?"));
+            dgLore.Items.Add(new PropVal("HideCap", "?"));
+            dgLore.Items.Add(new PropVal("ParryCap", "?"));
 
-            dgLore.Items.Add(new PropVal("Mage", "?"));
-            dgLore.Items.Add(new PropVal("Eval", "?"));
-            dgLore.Items.Add(new PropVal("Med", "?"));
-            dgLore.Items.Add(new PropVal("Necro", "?"));
-            dgLore.Items.Add(new PropVal("Spirit", "?"));
-            dgLore.Items.Add(new PropVal("Myst", "?"));
-            dgLore.Items.Add(new PropVal("Focus", "?"));
-            dgLore.Items.Add(new PropVal("SW", "?"));
-            dgLore.Items.Add(new PropVal("Disco", "?"));
+            dgLore.Items.Add(new PropVal("MageCap", "?"));
+            dgLore.Items.Add(new PropVal("EvalCap", "?"));
+            dgLore.Items.Add(new PropVal("MedCap", "?"));
+            dgLore.Items.Add(new PropVal("NecroCap", "?"));
+            dgLore.Items.Add(new PropVal("SpiritCap", "?"));
+            dgLore.Items.Add(new PropVal("MystCap", "?"));
+            dgLore.Items.Add(new PropVal("FocusCap", "?"));
+            dgLore.Items.Add(new PropVal("SWCap", "?"));
+            dgLore.Items.Add(new PropVal("DiscoCap", "?"));
 
-            dgLore.Items.Add(new PropVal("Bush", "?"));
-            dgLore.Items.Add(new PropVal("Ninj", "?"));
-            dgLore.Items.Add(new PropVal("Chiv", "?"));
+            dgLore.Items.Add(new PropVal("BushCap", "?"));
+            dgLore.Items.Add(new PropVal("NinjCap", "?"));
+            dgLore.Items.Add(new PropVal("ChivCap", "?"));
             dgLore.Items.Add(new PropVal("Slots", "?"));
 
-
+            cmbAnimalType.Items.Add("Bake Kitsune");
+            cmbAnimalType.Items.Add("Bake Kitsune (Legacy)");
+            cmbAnimalType.Items.Add("Bane Dragon");
+            cmbAnimalType.Items.Add("Blood Fox");
+            cmbAnimalType.Items.Add("Bull");
+            cmbAnimalType.Items.Add("Coconut Crab");
+            cmbAnimalType.Items.Add("Cold Drake");
+            cmbAnimalType.Items.Add("Crimson Drake");
+            cmbAnimalType.Items.Add("Cu Sidhe");
+            cmbAnimalType.Items.Add("Deathwatch Beetle");
+            cmbAnimalType.Items.Add("Dimetrosaur");
+            cmbAnimalType.Items.Add("Dire Wolf");
+            cmbAnimalType.Items.Add("Dragon");
+            cmbAnimalType.Items.Add("Dragon (Legacy)");
+            cmbAnimalType.Items.Add("Dragon Wolf");
+            cmbAnimalType.Items.Add("Drake");
+            cmbAnimalType.Items.Add("Dread Spider");
+            cmbAnimalType.Items.Add("Dread Warhorse");
+            cmbAnimalType.Items.Add("Eowmu");
+            cmbAnimalType.Items.Add("Fire Beetle");
+            cmbAnimalType.Items.Add("Fire Steed");
+            cmbAnimalType.Items.Add("Frost Dragon");
+            cmbAnimalType.Items.Add("Frost Drake");
+            cmbAnimalType.Items.Add("Frost Mite");
+            cmbAnimalType.Items.Add("Frost Spider");
+            cmbAnimalType.Items.Add("Gallusaurus");
+            cmbAnimalType.Items.Add("Gaman");
+            cmbAnimalType.Items.Add("Giant Beetle");
+            cmbAnimalType.Items.Add("Greater Dragon");
+            cmbAnimalType.Items.Add("Grizzled Mare");
+            cmbAnimalType.Items.Add("Hell Hound");
+            cmbAnimalType.Items.Add("Hellcat");
+            cmbAnimalType.Items.Add("High Plains Boura");
+            cmbAnimalType.Items.Add("Hiryu");
+            cmbAnimalType.Items.Add("Hungry Coconut Crab");
+            cmbAnimalType.Items.Add("Iron Beetle");
+            cmbAnimalType.Items.Add("Ki-Rin");
+            cmbAnimalType.Items.Add("Lasher");
+            cmbAnimalType.Items.Add("Lava Lizard");
+            cmbAnimalType.Items.Add("Lesser Hiryu");
+            cmbAnimalType.Items.Add("Lion");
+            cmbAnimalType.Items.Add("Najasaurus");
             cmbAnimalType.Items.Add("Nightmare");
+            cmbAnimalType.Items.Add("Nightmare (Legacy)");
+            cmbAnimalType.Items.Add("Ossein Ram");
+            cmbAnimalType.Items.Add("Phoenix");
+            cmbAnimalType.Items.Add("Platinum Drake");
+            cmbAnimalType.Items.Add("Polar Bear");
+            cmbAnimalType.Items.Add("Raptor");
+            cmbAnimalType.Items.Add("Reptalon");
+            cmbAnimalType.Items.Add("Rune Beetle");
+            cmbAnimalType.Items.Add("Sabre-Toothed Tiger");
+            cmbAnimalType.Items.Add("Saurosaurus");
+            cmbAnimalType.Items.Add("Serpentine Dragon");
+            cmbAnimalType.Items.Add("Shadow Wyrm");
+            cmbAnimalType.Items.Add("Skeletal Cat");
+            cmbAnimalType.Items.Add("Skree");
+            cmbAnimalType.Items.Add("Stone Slith");
+            cmbAnimalType.Items.Add("Stygian Drake");
+            cmbAnimalType.Items.Add("Triceratops");
+            cmbAnimalType.Items.Add("Triton");
+            cmbAnimalType.Items.Add("Tsuki Wolf");
+            cmbAnimalType.Items.Add("Unicorn");
+            cmbAnimalType.Items.Add("Vollem");
+            cmbAnimalType.Items.Add("Vollem (Legacy)");
+            cmbAnimalType.Items.Add("Walrus");
+            cmbAnimalType.Items.Add("White Wyrm");
+            cmbAnimalType.Items.Add("White Wyrm (Legacy)");
+            cmbAnimalType.Items.Add("Wild Tiger");
+            cmbAnimalType.Items.Add("Windrunner");
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
@@ -1000,7 +1093,8 @@ namespace DebaUOchery
                 !pixOn(x + 3, y - 5) &&
                 pixOn(x, y - 2) &&
                 pixOn(x, y - 3) &&
-                !pixOn(x + 3, y)
+                !pixOn(x + 3, y) &&
+                pixOn(x - 1, y - 6)
                 )
             {
                 x += 7;
@@ -1036,6 +1130,7 @@ namespace DebaUOchery
                 !pixOn(x, y + 1)  &&
                 pixOn(x + 2, y + 1) &&
                 pixOn(x + 4, y) &&
+                !pixOn(x, y - 2) &&
                 !pixOn(x, y - 5)
                 )
             {
@@ -1069,7 +1164,9 @@ namespace DebaUOchery
 
             //IsSix?
             if (
+                pixOn(x, y - 4) &&
                 pixOn(x + 1, y) &&
+                pixOn(x + 2, y) &&
                 pixOn(x + 3, y - 5) &&
                 !pixOn(x, y + 1)
                 )
@@ -1093,6 +1190,7 @@ namespace DebaUOchery
             if (
                 !pixOn(x, y + 1) &&
                 !pixOn(x + 3, y - 5) &&
+                pixOn(x, y - 6) &&
                 pixOn(x, y - 2) &&
                 !pixOn(x, y - 3)
                 )
@@ -1111,9 +1209,23 @@ namespace DebaUOchery
                 return '9';
             }
 
+            //Is_A?
+            if (
+                pixOn(x, y - 6) &&
+                !pixOn(x, y - 7) &&
+                pixOn(x + 2, y - 3) &&
+                pixOn(x + 6, y)
+                )
+            {
+                x += 7;
+                return 'A';
+            }
+
             //Is_a?
             if (
                 !pixOn(x, y + 1) &&
+                !pixOn(x, y - 4) &&
+                !pixOn(x + 3, y - 5) &&
                 pixOn(x + 1, y - 1) &&
                 !pixOn(x + 2, y + 1) &&
                 !pixOn(x + 3, y + 2)
@@ -1123,9 +1235,25 @@ namespace DebaUOchery
                 return 'a';
             }
 
+            //Is_B?
+            if (
+                pixOn(x, y - 6) &&
+                pixOn(x, y - 8) &&
+                !pixOn(x + 6, y - 4) &&
+                !pixOn(x + 1, y - 9) &&
+                !pixOn(x + 6, y - 6) &&
+                pixOn(x + 2, y - 4) &&
+                pixOn(x + 6, y)
+                )
+            {
+                x += 7;
+                return 'B';
+            }
+
             //Is_b?
             if (
                 pixOn(x, y - 7) &&
+                !pixOn(x, y - 8) &&
                 pixOn(x + 2, y + 1) &&
                 pixOn(x + 2, y - 4) &&
                 !pixOn(x + 2, y - 7) &&
@@ -1135,6 +1263,75 @@ namespace DebaUOchery
             {
                 x += 5;
                 return 'b';
+            }
+
+            //Is_C?
+            if (
+                pixOn(x, y - 6) &&
+                pixOn(x, y - 7) &&
+                !pixOn(x, y - 8) &&
+                pixOn(x + 2, y - 8) &&
+                pixOn(x + 6, y) &&
+                !pixOn(x + 6, y - 2)
+                )
+            {
+                x += 7;
+                return 'C';
+            }
+
+            //Is_c?
+            if (
+                !pixOn(x, y + 1) &&
+                !pixOn(x + 2, y) &&
+                pixOn(x + 3, y)
+                )
+            {
+                x += 5;
+                return 'c';
+            }
+
+            //Is_D?
+            if (
+                pixOn(x, y - 6) &&
+                pixOn(x, y - 7) &&
+                pixOn(x, y - 8) &&
+                pixOn(x + 2, y - 8) &&
+                pixOn(x + 6, y) &&
+                !pixOn(x + 6, y + 1)
+                )
+            {
+                x += 7;
+                return 'D';
+            }
+
+            //Is_d?
+            if (
+                !pixOn(x, y + 1) &&
+                !pixOn(x, y - 4) &&
+                pixOn(x + 3, y - 5) &&
+                pixOn(x + 1, y - 1) &&
+                !pixOn(x + 2, y + 1) &&
+                !pixOn(x + 3, y + 2)
+                )
+            {
+                x += 5;
+                return 'd';
+            }
+
+            //Is_E?
+            if (
+                pixOn(x, y - 7) &&
+                pixOn(x, y - 8) &&
+                pixOn(x + 2, y + 1) &&
+                pixOn(x + 2, y - 4) &&
+                pixOn(x + 2, y - 8) &&
+                !pixOn(x + 2, y - 7) &&
+                !pixOn(x - 1, y - 6)
+
+                )
+            {
+                x += 6;
+                return 'E';
             }
 
             //Is_e?
@@ -1147,6 +1344,47 @@ namespace DebaUOchery
             {
                 x += 5;
                 return 'e';
+            }
+
+            //Is_F?
+            if (
+                pixOn(x, y - 7) &&
+                pixOn(x, y - 8) &&
+                pixOn(x + 2, y - 4) &&
+                pixOn(x + 2, y - 8) &&
+                !pixOn(x + 2, y - 7) &&
+                !pixOn(x - 1, y - 6) &&
+                !pixOn(x + 2, y)
+
+                )
+            {
+                x += 6;
+                return 'F';
+            }
+
+            //Is_f?
+            if (
+                pixOn(x, y - 6) &&
+                pixOn(x, y - 8) &&
+                pixOn(x + 1, y - 9) &&
+                pixOn(x + 2, y - 4)
+                )
+            {
+                x += 4;
+                return 'f';
+            }
+
+            //Is_G?
+            if (
+                pixOn(x, y - 6) &&
+                !pixOn(x, y - 8) &&
+                pixOn(x + 1, y + 1) &&
+                pixOn(x + 2, y + 1) &&
+                pixOn(x + 3, y + 1)
+                )
+            {
+                x += 7;
+                return 'G';
             }
 
             //Is_g?
@@ -1162,14 +1400,131 @@ namespace DebaUOchery
                 return 'g';
             }
 
+            //Is_H?
+            if (
+                pixOn(x, y - 6) &&
+                pixOn(x, y - 8) &&
+                pixOn(x + 6, y - 4) &&
+                !pixOn(x + 1, y - 9) &&
+                pixOn(x + 2, y - 4) &&
+                pixOn(x + 6, y)
+                )
+            {
+                x += 7;
+                return 'H';
+            }
+
+            //Is_h?
+            if (
+                pixOn(x, y - 7) &&
+                pixOn(x + 2, y - 4) &&
+                !pixOn(x + 2, y - 7) &&
+                !pixOn(x - 1, y - 6) &&
+                !pixOn(x, y - 8)
+
+                )
+            {
+                x += 5;
+                return 'h';
+            }
+
+            //Is_I?
+            if (
+                pixOn(x, y - 8) &&
+                !pixOn(x, y - 9) &&
+                pixOn(x, y - 5) &&
+                !pixOn(x + 2, y - 3) &&
+                !pixOn(x + 2, y - 2) &&
+                !pixOn(x + 2, y + 1) &&
+                !pixOn(x + 2, y - 7)
+
+                )
+            {
+                x += 2;
+                Console.WriteLine("Big I");
+                return 'I';
+            }
+
             //Is_i?
             if (
                 !pixOn(x, y - 5) &&
-                pixOn(x, y - 7)
+                pixOn(x, y - 7) &&
+                !pixOn(x, y + 2)
                 )
             {
                 x += 2;
                 return 'i';
+            }
+
+            //Is_J?
+            if (
+                !pixOn(x, y + 1) &&
+                !pixOn(x + 3, y - 5) &&
+                !pixOn(x, y - 6) &&
+                pixOn(x, y - 2) &&
+                !pixOn(x, y - 3)
+                )
+            {
+                x += 7;
+                return 'J';
+            }
+
+            //Is_j?
+            if (
+                !pixOn(x, y - 5) &&
+                pixOn(x, y - 7) &&
+                pixOn(x, y + 2) &&
+                pixOn(x - 1, y + 3)
+                )
+            {
+                x += 2;
+                return 'j';
+            }
+
+            //Is_K?
+            if (
+                pixOn(x, y - 8) &&
+                !pixOn(x, y - 9) &&
+                pixOn(x, y - 5) &&
+                pixOn(x + 2, y - 3) &&
+                !pixOn(x + 2, y - 7)
+
+                )
+            {
+                x += 7;
+                return 'K';
+            }
+
+            //Is_k?
+            if (
+                pixOn(x, y - 7) &&
+                !pixOn(x, y - 8) &&
+                pixOn(x, y - 5) &&
+                !pixOn(x + 2, y - 3) &&
+                pixOn(x + 2, y - 2) &&
+                !pixOn(x + 2, y - 7)
+
+                )
+            {
+                x += 5;
+                return 'k';
+            }
+
+            //Is_L?
+            if (
+                pixOn(x, y - 8) &&
+                !pixOn(x, y - 9) &&
+                pixOn(x, y - 5) &&
+                !pixOn(x + 2, y - 3) &&
+                !pixOn(x + 2, y - 2) &&
+                pixOn(x + 2, y + 1) &&
+                !pixOn(x + 2, y - 7)
+
+                )
+            {
+                x += 6;
+                Console.WriteLine("Big L");
+                return 'L';
             }
 
             //Is_l?
@@ -1182,6 +1537,7 @@ namespace DebaUOchery
                 )
             {
                 x += 2;
+                Console.WriteLine("Little l");
                 return 'l';
             }
 
@@ -1303,7 +1659,7 @@ namespace DebaUOchery
                 }
                 else
                 {
-                    Console.WriteLine($@"{i},{y} - {bitmap.GetPixel(i, y)}");
+                    //Console.WriteLine($@"{i},{y} - {bitmap.GetPixel(i, y)}");
                     if (
                         !pixOn(i, y + 1) &&
                         !pixOn(i, y - 1) &&
@@ -1342,11 +1698,24 @@ namespace DebaUOchery
             string filename = $@"{cmbAnimalType.Text}.csv";
             Directory.CreateDirectory(path);
 
+            if (chkWild.IsChecked == true)
+                filename = "Tame-" + filename;
+            else
+                filename = "Wild-" + filename;
+
             if (!File.Exists($@"{path}\{filename}"))
             {
                 File.AppendAllText($@"{path}\{filename}", "objId,HP,Stam,Mana,Str,Dex,Int,BardDiff,HPR,SR,MR,PhysRes,FireRes,ColdRes,PoisRes,EnerRes,PhysDam,FireDam,ColdDam,PoisDam,EnerDam,BaseDam,Wres,Tact,Resist,Anat,Heal,Pois,Detect,Hide,Parry,Mage,Eval,Med,Necro,Spirit,Myst,Focus,SW,Disco,Bush,Ninj,Chiv,Slots" + Environment.NewLine);
             }
-            File.AppendAllText($@"{path}\{filename}", $@"{animal.objId},{animal.HP},{animal.Stam},{animal.Mana},{animal.Str},{animal.Dex},{animal.Int},{animal.BardDiff},{animal.HPR},{animal.SR},{animal.MR},{animal.PhysRes},{animal.FireRes},{animal.ColdRes},{animal.PoisRes},{animal.EnerRes},{animal.PhysDam},{animal.FireDam},{animal.ColdDam},{animal.PoisDam},{animal.EnerDam},{animal.BaseDam},{animal.Wres},{animal.Tact},{animal.Resist},{animal.Anat},{animal.Heal},{animal.Pois},{animal.Detect},{animal.Hide},{animal.Parry},{animal.Mage},{animal.Eval},{animal.Med},{animal.Necro},{animal.Spirit},{animal.Myst},{animal.Focus},{animal.SW},{animal.Disco},{animal.Bush},{animal.Ninj},{animal.Chiv},{animal.Slots}" + Environment.NewLine);
+            File.AppendAllText($@"{path}\{filename}", $@"{animal.objId},{animal.HP},{animal.Stam},{animal.Mana},{animal.Str},{animal.Dex},{animal.Int},{animal.BardDiff},{animal.HPR},{animal.SR},{animal.MR},{animal.PhysRes},{animal.FireRes},{animal.ColdRes},{animal.PoisRes},{animal.EnerRes},{animal.PhysDam},{animal.FireDam},{animal.ColdDam},{animal.PoisDam},{animal.EnerDam},{animal.BaseDam},{animal.WresCap},{animal.TactCap},{animal.ResistCap},{animal.AnatCap},{animal.HealCap},{animal.PoisCap},{animal.DetectCap},{animal.HideCap},{animal.ParryCap},{animal.MageCap},{animal.EvalCap},{animal.MedCap},{animal.NecroCap},{animal.SpiritCap},{animal.MystCap},{animal.FocusCap},{animal.SWCap},{animal.DiscoCap},{animal.BushCap},{animal.NinjCap},{animal.ChivCap},{animal.Slots}" + Environment.NewLine);
+        }
+
+        private void btnCAH_Click(object sender, RoutedEventArgs e)
+        {
+            string url = $@"https://www.uo-cah.com/pet-intensity-calculator?creature={cmbAnimalType.Text}&hits={animal.HP}&stamina={animal.Stam}&mana={animal.Mana}&str={animal.Str}&dex={animal.Dex}&int={animal.Int}&rateminimum=1&physical={animal.PhysRes}&fire={animal.FireRes}&cold={animal.ColdRes}&poison={animal.PoisRes}&energy={animal.EnerRes}&target_physical=--&target_fire=--&target_cold=--&target_poison=--&target_energy=--&wrestling={animal.WresCap}&resistingspells={animal.ResistCap}&evalintel={animal.EvalCap}&tactics={animal.TactCap}&magery={animal.MageCap}&poisoning={animal.PoisCap}&mic=fresh#freshresults";
+
+
+            Process.Start(url);
         }
     }
 }
