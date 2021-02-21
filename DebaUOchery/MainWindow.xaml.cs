@@ -397,7 +397,7 @@ namespace DebaUOchery
         private void startCharTimer()
         {
             Timer charTime = new System.Timers.Timer();
-            charTime.Interval = 66;
+            charTime.Interval = 333;
             charTime.Elapsed += new System.Timers.ElapsedEventHandler(charTimeElapsed);
             charTime.Enabled = true;
         }
@@ -444,7 +444,7 @@ namespace DebaUOchery
                             case 1:
                                 animal.objId = txtLastTargetID.Text;
                                 pixCmp = Color.FromArgb(0, 0, 0, 132);
-                                this.Title = parseLine(40, 44);
+                                animal.Name = parseLine(40, 44);
 
 
                                 x = 160;
@@ -516,6 +516,25 @@ namespace DebaUOchery
                             case 5:
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
+                                animal.WresCurr = parseLine(160, 104);
+                                animal.WresCurr = SlashSplit(animal.WresCurr, 0);
+                                animal.TactCurr = parseLine(160, 122);
+                                animal.TactCurr = SlashSplit(animal.TactCurr, 0);
+                                animal.ResistCurr = parseLine(160, 140);
+                                animal.ResistCurr = SlashSplit(animal.ResistCurr, 0);
+                                animal.AnatCurr = parseLine(160, 158);
+                                animal.AnatCurr = SlashSplit(animal.AnatCurr, 0);
+                                animal.HealCurr = parseLine(160, 176);
+                                animal.HealCurr = SlashSplit(animal.HealCurr, 0);
+                                animal.PoisCurr = parseLine(160, 194);
+                                animal.PoisCurr = SlashSplit(animal.PoisCurr, 0);
+                                animal.DetectCurr = parseLine(160, 212);
+                                animal.DetectCurr = SlashSplit(animal.DetectCurr, 0);
+                                animal.HideCurr = parseLine(160, 230);
+                                animal.HideCurr = SlashSplit(animal.HideCurr, 0);
+                                animal.ParryCurr = parseLine(160, 248);
+                                animal.ParryCurr = SlashSplit(animal.ParryCurr, 0);
+
                                 animal.WresCap = parseLine(160, 104);
                                 animal.WresCap = SlashSplit(animal.WresCap, 1);
                                 animal.TactCap = parseLine(160, 122);
@@ -540,6 +559,25 @@ namespace DebaUOchery
                             case 6:
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
+                                animal.MageCurr = parseLine(160, 104);
+                                animal.MageCurr = SlashSplit(animal.MageCurr, 0);
+                                animal.EvalCurr = parseLine(160, 122);
+                                animal.EvalCurr = SlashSplit(animal.EvalCurr, 0);
+                                animal.MedCurr = parseLine(160, 140);
+                                animal.MedCurr = SlashSplit(animal.MedCurr, 0);
+                                animal.NecroCurr = parseLine(160, 158);
+                                animal.NecroCurr = SlashSplit(animal.NecroCurr, 0);
+                                animal.SpiritCurr = parseLine(160, 176);
+                                animal.SpiritCurr = SlashSplit(animal.SpiritCurr, 0);
+                                animal.MystCurr = parseLine(160, 194);
+                                animal.MystCurr = SlashSplit(animal.MystCurr, 0);
+                                animal.FocusCurr = parseLine(160, 212);
+                                animal.FocusCurr = SlashSplit(animal.FocusCurr, 0);
+                                animal.SWCurr = parseLine(160, 230);
+                                animal.SWCurr = SlashSplit(animal.SWCurr, 0);
+                                animal.DiscoCurr = parseLine(160, 248);
+                                animal.DiscoCurr = SlashSplit(animal.DiscoCurr, 0);
+
                                 animal.MageCap = parseLine(160, 104);
                                 animal.MageCap = SlashSplit(animal.MageCap, 1);
                                 animal.EvalCap = parseLine(160, 122);
@@ -564,6 +602,13 @@ namespace DebaUOchery
                             case 7:
                                 x = 160;
                                 pixCmp = Color.FromArgb(0, 0, 0, 10);
+                                animal.BushCurr = parseLine(160, 104);
+                                animal.BushCurr = SlashSplit(animal.BushCurr, 0);
+                                animal.NinjCurr = parseLine(160, 122);
+                                animal.NinjCurr = SlashSplit(animal.NinjCurr, 0);
+                                animal.ChivCurr = parseLine(160, 140);
+                                animal.ChivCurr = SlashSplit(animal.ChivCurr, 0);
+
                                 animal.BushCap = parseLine(160, 104);
                                 animal.BushCap = SlashSplit(animal.BushCap, 1);
                                 animal.NinjCap = parseLine(160, 122);
@@ -573,7 +618,11 @@ namespace DebaUOchery
 
                                 x = 30;
                                 pixCmp = Color.FromArgb(0, 82, 66, 41);
-                                animal.Slots = parseLine(30, 248)[0].ToString();
+                                try
+                                {
+                                    animal.Slots = parseLine(30, 248)[0].ToString();
+                                }
+                                catch { animal.Slots = "?"; }
 
                                 parsedPage++;
                                 break;
@@ -586,7 +635,7 @@ namespace DebaUOchery
                                 break;
                         }
 
-                        bitmap.Save("c:\\temp\\test.bmp", ImageFormat.Bmp);
+                        //bitmap.Save("c:\\temp\\test.bmp", ImageFormat.Bmp);
                     }
 
 
@@ -599,6 +648,11 @@ namespace DebaUOchery
                     {
                         pv.Val = animal[pv.Prop];
                     }
+
+                    dgLore.Items.Refresh();
+                       
+
+
                 });
             }
             catch
@@ -658,7 +712,6 @@ namespace DebaUOchery
             }
             this.Dispatcher.Invoke(() =>
             {
-                dgLore.Items.Refresh();
                 dgSkills.Items.Refresh();
             });
         }
@@ -697,6 +750,7 @@ namespace DebaUOchery
                 }
             }
 
+            public string Name { get; set; }
             public string objId { get; set; }
             public string HP { get; set; }
             public string Stam { get; set; }
@@ -723,6 +777,29 @@ namespace DebaUOchery
             public string EnerDam { get; set; }
             public string BaseDam { get; set; }
 
+            public string WresCurr { get; set; }
+            public string TactCurr { get; set; }
+            public string ResistCurr { get; set; }
+            public string AnatCurr { get; set; }
+            public string HealCurr { get; set; }
+            public string PoisCurr { get; set; }
+            public string DetectCurr { get; set; }
+            public string HideCurr { get; set; }
+            public string ParryCurr { get; set; }
+
+            public string MageCurr { get; set; }
+            public string EvalCurr { get; set; }
+            public string MedCurr { get; set; }
+            public string NecroCurr { get; set; }
+            public string SpiritCurr { get; set; }
+            public string MystCurr { get; set; }
+            public string FocusCurr { get; set; }
+            public string SWCurr { get; set; }
+            public string DiscoCurr { get; set; }
+
+            public string BushCurr { get; set; }
+            public string NinjCurr { get; set; }
+            public string ChivCurr { get; set; }
             public string WresCap { get; set; }
             public string TactCap { get; set; }
             public string ResistCap { get; set; }
@@ -751,6 +828,7 @@ namespace DebaUOchery
 
             public Animal()
             {
+                Name = "?";
                 objId = "?";
                 HP = "?";
                 Stam = "?";
@@ -777,28 +855,49 @@ namespace DebaUOchery
                 EnerDam = "?";
                 BaseDam = "?";
 
+                WresCurr = "?";
                 WresCap = "?";
+                TactCurr = "?";
                 TactCap = "?";
+                ResistCurr = "?";
                 ResistCap = "?";
+                AnatCurr = "?";
                 AnatCap = "?";
+                HealCurr = "?";
                 HealCap = "?";
+                PoisCurr = "?";
                 PoisCap = "?";
+                DetectCurr = "?";
                 DetectCap = "?";
+                HideCurr = "?";
                 HideCap = "?";
+                ParryCurr = "?";
                 ParryCap = "?";
 
+                MageCurr = "?";
                 MageCap = "?";
+                EvalCurr = "?";
                 EvalCap = "?";
+                MedCurr = "?";
                 MedCap = "?";
+                NecroCurr = "?";
                 NecroCap = "?";
+                SpiritCurr = "?";
                 SpiritCap = "?";
+                MystCurr = "?";
                 MystCap = "?";
+                FocusCurr = "?";
                 FocusCap = "?";
+                SWCurr = "?";
                 SWCap = "?";
+                DiscoCurr = "?";
                 DiscoCap = "?";
 
+                BushCurr = "?";
                 BushCap = "?";
+                NinjCurr = "?";
                 NinjCap = "?";
+                ChivCurr = "?";
                 ChivCap = "?";
                 Slots = "?";
 
@@ -894,6 +993,7 @@ namespace DebaUOchery
             dgSkills.Items.Add(new Skill(47, "47"));
             dgSkills.Items.Add(new Skill(48, "Remove Trap"));
 
+            dgLore.Items.Add(new PropVal("Name", "?"));
             dgLore.Items.Add(new PropVal("objId", "?"));
 
             dgLore.Items.Add(new PropVal("HP", "?"));
@@ -921,43 +1021,75 @@ namespace DebaUOchery
             dgLore.Items.Add(new PropVal("EnerDam", "?"));
             dgLore.Items.Add(new PropVal("BaseDam", "?"));
 
+            dgLore.Items.Add(new PropVal("WresCurr", "?"));
             dgLore.Items.Add(new PropVal("WresCap", "?"));
+            dgLore.Items.Add(new PropVal("TactCurr", "?"));
             dgLore.Items.Add(new PropVal("TactCap", "?"));
+            dgLore.Items.Add(new PropVal("ResistCurr", "?"));
             dgLore.Items.Add(new PropVal("ResistCap", "?"));
+            dgLore.Items.Add(new PropVal("AnatCurr", "?"));
             dgLore.Items.Add(new PropVal("AnatCap", "?"));
+            dgLore.Items.Add(new PropVal("HealCurr", "?"));
             dgLore.Items.Add(new PropVal("HealCap", "?"));
+            dgLore.Items.Add(new PropVal("PoisCurr", "?"));
             dgLore.Items.Add(new PropVal("PoisCap", "?"));
+            dgLore.Items.Add(new PropVal("DetectCurr", "?"));
             dgLore.Items.Add(new PropVal("DetectCap", "?"));
+            dgLore.Items.Add(new PropVal("HideCurr", "?"));
             dgLore.Items.Add(new PropVal("HideCap", "?"));
+            dgLore.Items.Add(new PropVal("ParryCurr", "?"));
             dgLore.Items.Add(new PropVal("ParryCap", "?"));
 
+            dgLore.Items.Add(new PropVal("MageCurr", "?"));
             dgLore.Items.Add(new PropVal("MageCap", "?"));
+            dgLore.Items.Add(new PropVal("EvalCurr", "?"));
             dgLore.Items.Add(new PropVal("EvalCap", "?"));
+            dgLore.Items.Add(new PropVal("MedCurr", "?"));
             dgLore.Items.Add(new PropVal("MedCap", "?"));
+            dgLore.Items.Add(new PropVal("NecroCurr", "?"));
             dgLore.Items.Add(new PropVal("NecroCap", "?"));
+            dgLore.Items.Add(new PropVal("SpiritCurr", "?"));
             dgLore.Items.Add(new PropVal("SpiritCap", "?"));
+            dgLore.Items.Add(new PropVal("MystCurr", "?"));
             dgLore.Items.Add(new PropVal("MystCap", "?"));
+            dgLore.Items.Add(new PropVal("FocusCurr", "?"));
             dgLore.Items.Add(new PropVal("FocusCap", "?"));
+            dgLore.Items.Add(new PropVal("SWCurr", "?"));
             dgLore.Items.Add(new PropVal("SWCap", "?"));
+            dgLore.Items.Add(new PropVal("DiscoCurr", "?"));
             dgLore.Items.Add(new PropVal("DiscoCap", "?"));
 
+            dgLore.Items.Add(new PropVal("BushCurr", "?"));
             dgLore.Items.Add(new PropVal("BushCap", "?"));
+            dgLore.Items.Add(new PropVal("NinjCurr", "?"));
             dgLore.Items.Add(new PropVal("NinjCap", "?"));
+            dgLore.Items.Add(new PropVal("ChivCurr", "?"));
             dgLore.Items.Add(new PropVal("ChivCap", "?"));
             dgLore.Items.Add(new PropVal("Slots", "?"));
 
+            cmbAnimalType.Items.Add("Anon (Earth)");
+            cmbAnimalType.Items.Add("Ant Lion");
             cmbAnimalType.Items.Add("Bake Kitsune");
             cmbAnimalType.Items.Add("Bake Kitsune (Legacy)");
             cmbAnimalType.Items.Add("Bane Dragon");
+            cmbAnimalType.Items.Add("Black Solen Warrior");
+            cmbAnimalType.Items.Add("Black Solen Worker");
             cmbAnimalType.Items.Add("Blood Fox");
+            cmbAnimalType.Items.Add("Boar");
             cmbAnimalType.Items.Add("Bull");
+            cmbAnimalType.Items.Add("Cat");
+            cmbAnimalType.Items.Add("Chicken");
             cmbAnimalType.Items.Add("Coconut Crab");
             cmbAnimalType.Items.Add("Cold Drake");
+            cmbAnimalType.Items.Add("Cougar");
+            cmbAnimalType.Items.Add("Cow");
             cmbAnimalType.Items.Add("Crimson Drake");
+            cmbAnimalType.Items.Add("Crow");
             cmbAnimalType.Items.Add("Cu Sidhe");
             cmbAnimalType.Items.Add("Deathwatch Beetle");
             cmbAnimalType.Items.Add("Dimetrosaur");
             cmbAnimalType.Items.Add("Dire Wolf");
+            cmbAnimalType.Items.Add("Dog");
             cmbAnimalType.Items.Add("Dragon");
             cmbAnimalType.Items.Add("Dragon (Legacy)");
             cmbAnimalType.Items.Add("Dragon Wolf");
@@ -974,11 +1106,15 @@ namespace DebaUOchery
             cmbAnimalType.Items.Add("Gallusaurus");
             cmbAnimalType.Items.Add("Gaman");
             cmbAnimalType.Items.Add("Giant Beetle");
+            cmbAnimalType.Items.Add("Goat");
+            cmbAnimalType.Items.Add("Great Hart");
             cmbAnimalType.Items.Add("Greater Dragon");
             cmbAnimalType.Items.Add("Grizzled Mare");
+            cmbAnimalType.Items.Add("Grizzly Bear");
             cmbAnimalType.Items.Add("Hell Hound");
             cmbAnimalType.Items.Add("Hellcat");
             cmbAnimalType.Items.Add("High Plains Boura");
+            cmbAnimalType.Items.Add("Hind");
             cmbAnimalType.Items.Add("Hiryu");
             cmbAnimalType.Items.Add("Hungry Coconut Crab");
             cmbAnimalType.Items.Add("Iron Beetle");
@@ -987,50 +1123,60 @@ namespace DebaUOchery
             cmbAnimalType.Items.Add("Lava Lizard");
             cmbAnimalType.Items.Add("Lesser Hiryu");
             cmbAnimalType.Items.Add("Lion");
+            cmbAnimalType.Items.Add("Llama");
+            cmbAnimalType.Items.Add("Mongbat");
             cmbAnimalType.Items.Add("Najasaurus");
             cmbAnimalType.Items.Add("Nightmare");
             cmbAnimalType.Items.Add("Nightmare (Legacy)");
             cmbAnimalType.Items.Add("Ossein Ram");
             cmbAnimalType.Items.Add("Phoenix");
+            cmbAnimalType.Items.Add("Pig");
             cmbAnimalType.Items.Add("Platinum Drake");
             cmbAnimalType.Items.Add("Polar Bear");
+            cmbAnimalType.Items.Add("Rabbit");
             cmbAnimalType.Items.Add("Raptor");
+            cmbAnimalType.Items.Add("Raven");
             cmbAnimalType.Items.Add("Reptalon");
             cmbAnimalType.Items.Add("Rune Beetle");
             cmbAnimalType.Items.Add("Sabre-Toothed Tiger");
             cmbAnimalType.Items.Add("Saurosaurus");
             cmbAnimalType.Items.Add("Serpentine Dragon");
+            cmbAnimalType.Items.Add("Shadow Iron Elemental");
             cmbAnimalType.Items.Add("Shadow Wyrm");
             cmbAnimalType.Items.Add("Skeletal Cat");
             cmbAnimalType.Items.Add("Skree");
             cmbAnimalType.Items.Add("Stone Slith");
             cmbAnimalType.Items.Add("Stygian Drake");
+            cmbAnimalType.Items.Add("Swamp Dragon");
+            cmbAnimalType.Items.Add("Timber Wolf");
             cmbAnimalType.Items.Add("Triceratops");
             cmbAnimalType.Items.Add("Triton");
+            cmbAnimalType.Items.Add("Tropical Bird");
             cmbAnimalType.Items.Add("Tsuki Wolf");
+            cmbAnimalType.Items.Add("Turkey");
             cmbAnimalType.Items.Add("Unicorn");
             cmbAnimalType.Items.Add("Vollem");
             cmbAnimalType.Items.Add("Vollem (Legacy)");
             cmbAnimalType.Items.Add("Walrus");
+            cmbAnimalType.Items.Add("White Wolf");
             cmbAnimalType.Items.Add("White Wyrm");
             cmbAnimalType.Items.Add("White Wyrm (Legacy)");
             cmbAnimalType.Items.Add("Wild Tiger");
             cmbAnimalType.Items.Add("Windrunner");
-        }
 
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
-        {
+
             if (TryAttachToClient())
             {
-                startSkillTimer();
+                //startSkillTimer();
                 startCharTimer();
 
                 txtVal.Text = $@"{GameVals.shardName} - {GameVals.charName} - {GameVals.Facet}: {GameVals.xPos}x{RInt32(Locs.yPos)}";
             }
             else
                 txtVal.Text = "Can't connect";
-            
         }
+
+
 
         Bitmap bitmap;
         Color pixCmp = new Color();
@@ -1088,13 +1234,12 @@ namespace DebaUOchery
 
             //IsZero?
             if (
-                !pixOn(x, y + 1) &&
-                !pixOn(x + 2, y - 1) &&
-                !pixOn(x + 3, y - 5) &&
-                pixOn(x, y - 2) &&
-                pixOn(x, y - 3) &&
-                !pixOn(x + 3, y) &&
-                pixOn(x - 1, y - 6)
+                pixOn(x, y - 6) &&
+                !pixOn(x, y - 8) &&
+                pixOn(x + 1, y + 1) &&
+                pixOn(x + 2, y + 1) &&
+                pixOn(x + 3, y + 1) &&
+                !pixOn(x + 4, y - 4)
                 )
             {
                 x += 7;
@@ -1541,6 +1686,19 @@ namespace DebaUOchery
                 return 'l';
             }
 
+            //Is_M?
+            if (
+                pixOn(x, y - 7) &&
+                !pixOn(x + 2, y - 7) &&
+                !pixOn(x - 1, y - 6) &&
+                !pixOn(x, y - 8)
+
+                )
+            {
+                x += 8;
+                return 'M';
+            }
+
             //Is_m?
             if (
                 !pixOn(x + 2, y) &&
@@ -1553,6 +1711,10 @@ namespace DebaUOchery
                 x += 8;
                 return 'm';
             }
+
+
+
+
 
             //Is_n?
             if (
@@ -1699,19 +1861,45 @@ namespace DebaUOchery
             Directory.CreateDirectory(path);
 
             if (chkWild.IsChecked == true)
-                filename = "Tame-" + filename;
-            else
                 filename = "Wild-" + filename;
+            else
+                filename = "Tame-" + filename;
 
             if (!File.Exists($@"{path}\{filename}"))
             {
-                File.AppendAllText($@"{path}\{filename}", "objId,HP,Stam,Mana,Str,Dex,Int,BardDiff,HPR,SR,MR,PhysRes,FireRes,ColdRes,PoisRes,EnerRes,PhysDam,FireDam,ColdDam,PoisDam,EnerDam,BaseDam,Wres,Tact,Resist,Anat,Heal,Pois,Detect,Hide,Parry,Mage,Eval,Med,Necro,Spirit,Myst,Focus,SW,Disco,Bush,Ninj,Chiv,Slots" + Environment.NewLine);
+                File.AppendAllText($@"{path}\{filename}", "Name,objId,HP,Stam,Mana,Str,Dex,Int,BardDiff,HPR,SR,MR,PhysRes,FireRes,ColdRes,PoisRes,EnerRes,PhysDam,FireDam,ColdDam,PoisDam,EnerDam,BaseDam,WresCurr,WresCap,TactCurr,TactCap,ResistCurr,ResistCap,AnatCurr,AnatCap,HealCurr,HealCap,PoisCurr,PoisCap,DetectCurr,DetectCap,HideCurr,HideCap,ParryCurr,ParryCap,MageCurr,MageCap,EvalCurr,EvalCap,MedCurr,MedCap,NecroCurr,NecroCap,SpiritCurr,SpiritCap,MystCurr,MystCap,FocusCurr,FocusCap,SWCurr,SWCap,DiscoCurr,DiscoCap,BushCurr,BushCap,NinjCurr,NinjCap,ChivCurr,ChivCap,Slots" + Environment.NewLine);
             }
-            File.AppendAllText($@"{path}\{filename}", $@"{animal.objId},{animal.HP},{animal.Stam},{animal.Mana},{animal.Str},{animal.Dex},{animal.Int},{animal.BardDiff},{animal.HPR},{animal.SR},{animal.MR},{animal.PhysRes},{animal.FireRes},{animal.ColdRes},{animal.PoisRes},{animal.EnerRes},{animal.PhysDam},{animal.FireDam},{animal.ColdDam},{animal.PoisDam},{animal.EnerDam},{animal.BaseDam},{animal.WresCap},{animal.TactCap},{animal.ResistCap},{animal.AnatCap},{animal.HealCap},{animal.PoisCap},{animal.DetectCap},{animal.HideCap},{animal.ParryCap},{animal.MageCap},{animal.EvalCap},{animal.MedCap},{animal.NecroCap},{animal.SpiritCap},{animal.MystCap},{animal.FocusCap},{animal.SWCap},{animal.DiscoCap},{animal.BushCap},{animal.NinjCap},{animal.ChivCap},{animal.Slots}" + Environment.NewLine);
+            File.AppendAllText($@"{path}\{filename}", $@"{animal.Name},{animal.objId},{animal.HP},{animal.Stam},{animal.Mana},{animal.Str},{animal.Dex},{animal.Int},{animal.BardDiff},{animal.HPR},{animal.SR},{animal.MR},{animal.PhysRes},{animal.FireRes},{animal.ColdRes},{animal.PoisRes},{animal.EnerRes},{animal.PhysDam},{animal.FireDam},{animal.ColdDam},{animal.PoisDam},{animal.EnerDam},{animal.BaseDam},{animal.WresCurr},{animal.WresCap},{animal.TactCurr},{animal.TactCap},{animal.ResistCurr},{animal.ResistCap},{animal.AnatCurr},{animal.AnatCap},{animal.HealCurr},{animal.HealCap},{animal.PoisCurr},{animal.PoisCap},{animal.DetectCurr},{animal.DetectCap},{animal.HideCurr},{animal.HideCap},{animal.ParryCurr},{animal.ParryCap},{animal.MageCurr},{animal.MageCap},{animal.EvalCurr},{animal.EvalCap},{animal.MedCurr},{animal.MedCap},{animal.NecroCurr},{animal.NecroCap},{animal.SpiritCurr},{animal.SpiritCap},{animal.MystCurr},{animal.MystCap},{animal.FocusCurr},{animal.FocusCap},{animal.SWCurr},{animal.SWCap},{animal.DiscoCurr},{animal.DiscoCap},{animal.BushCurr},{animal.BushCap},{animal.NinjCurr},{animal.NinjCap},{animal.ChivCurr},{animal.ChivCap},{animal.Slots}" + Environment.NewLine);
         }
 
         private void btnCAH_Click(object sender, RoutedEventArgs e)
         {
+            Animal tmpanml = animal;
+
+            if (chkWild.IsChecked == true)
+            {
+
+                switch (cmbAnimalType.Text)
+                {
+                    case "Cu Sidhe":
+                    case "Ossein Ram":
+                        try
+                        {
+                            tmpanml.HP = (Math.Floor(float.Parse(tmpanml.HP) / 2f)).ToString();
+                            tmpanml.Stam = (Math.Floor(float.Parse(tmpanml.Stam) / 2f)).ToString();
+                           // tmpanml.Mana = (float.Parse(tmpanml.Mana) / 2f).ToString();
+                            tmpanml.Str = (Math.Floor(float.Parse(tmpanml.Str) / 2f)).ToString();
+                            tmpanml.Dex = (Math.Floor(float.Parse(tmpanml.Dex) / 2f)).ToString();
+                            //tmpanml.Int = (float.Parse(tmpanml.Int) / 2f).ToString();
+                        }
+                        catch { }
+                        
+                        break;
+
+                }
+
+            }
+
             string url = $@"https://www.uo-cah.com/pet-intensity-calculator?creature={cmbAnimalType.Text}&hits={animal.HP}&stamina={animal.Stam}&mana={animal.Mana}&str={animal.Str}&dex={animal.Dex}&int={animal.Int}&rateminimum=1&physical={animal.PhysRes}&fire={animal.FireRes}&cold={animal.ColdRes}&poison={animal.PoisRes}&energy={animal.EnerRes}&target_physical=--&target_fire=--&target_cold=--&target_poison=--&target_energy=--&wrestling={animal.WresCap}&resistingspells={animal.ResistCap}&evalintel={animal.EvalCap}&tactics={animal.TactCap}&magery={animal.MageCap}&poisoning={animal.PoisCap}&mic=fresh#freshresults";
 
 

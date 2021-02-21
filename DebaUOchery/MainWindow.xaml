@@ -8,7 +8,7 @@
         Height="460.773" Width="659.409"
         Title="DebaUOchery">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Margin="10,4,0,41" VerticalAlignment="Stretch" Width="631">
+        <TabControl HorizontalAlignment="Left" Margin="10,4,0,10" VerticalAlignment="Stretch" Width="631">
             <TabItem Header="Lore">
                 <Grid>
 
@@ -18,7 +18,7 @@
                     <ComboBox x:Name ="cmbAnimalType" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="314,10,191,0"/>
                     <Button Name="btnCAH" Content="CAH" HorizontalAlignment="Left" Margin="439,10,0,0" VerticalAlignment="Top" Width="96" Click="btnCAH_Click"/>
                     <CheckBox Name="chkWild" Content="Wild" IsChecked="True" Margin="10,35,509,297"/>
-                    <DataGrid AutoGenerateColumns="False" Name="dgLore" ItemsSource="{Binding LoreBinding}" HorizontalAlignment="Left"  Margin="8,82,0,0" VerticalAlignment="Stretch" Width="607" ColumnWidth="Auto">
+                    <DataGrid AutoGenerateColumns="False" Name="dgLore" ItemsSource="{Binding LoreBinding}" HorizontalAlignment="Left"  Margin="8,60,0,10" VerticalAlignment="Stretch" Width="200" ColumnWidth="Auto">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Prop" IsReadOnly="True" Binding="{Binding Path=Prop}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Val" IsReadOnly="True"  Binding="{Binding Path=Val}"></DataGridTextColumn>
@@ -63,7 +63,6 @@
 
 
         </TabControl>
-        <Button Name="btnConnect" Content="Connect to UO" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="96" Click="btnConnect_Click"/>
 
 
     </Grid>
