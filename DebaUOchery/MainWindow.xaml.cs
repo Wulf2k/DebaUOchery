@@ -1882,6 +1882,8 @@ namespace DebaUOchery
                 switch (cmbAnimalType.Text)
                 {
                     case "Cu Sidhe":
+                    case "Lesser Hiryu":
+                    case "Hiryu":
                     case "Ossein Ram":
                         try
                         {
